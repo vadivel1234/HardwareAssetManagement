@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Device List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="text-center imagebg" data-overlay="4">
+    <div class="background-image-holder">
+        <img alt="whatsnew-banner" src="//cdn.syncfusion.com/content/images/products/whats-new/optimizedimages/whatsnew-08.jpg?v=14112017083830">
+    </div>
+    <div style="top: 3em;position: absolute;left: 5em;">
+        <div class="bar__module">
+            <a href="/">
+                Back to Home
+            </a>
+        </div>
+        <!--end module-->
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <h2>
+                Choose your device types
+            </h2>
+            <p class="lead"> Fill out the form to process your request</p>            
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-xs-6">
+                <a href="/request/laptop" class="block">
+                    <div class="feature feature-7 boxed text-center imagebg" data-overlay="3">
+                        <div class="background-image-holder">
+                            <img alt="background" src="~/images/banner4.jpg">
+                        </div>
+                        <h4 class="pos-vertical-center">Laptop</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                <a href="/request/mobile" class="block">
+                    <div class="feature feature-7 boxed text-center imagebg" data-overlay="3">
+                        <div class="background-image-holder">
+                            <img alt="background" src="~/images/mobile.jpg">
+                        </div>
+                        <h4 class="pos-vertical-center">Mobile</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                <a href="/request/monitor" class="block">
+                    <div class="feature feature-7 boxed text-center imagebg" data-overlay="3">
+                        <div class="background-image-holder">
+                            <img alt="background" src="~/images/monitor.jpg">
+                        </div>
+                        <h4 class="pos-vertical-center">Monitor</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                <a href="/request/cpu" class="block">
+                    <div class="feature feature-7 boxed text-center imagebg" data-overlay="3">
+                        <div class="background-image-holder">
+                            <img alt="background" src="~/images/cpu.jpg">
+                        </div>
+                        <h4 class="pos-vertical-center">CPU</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                <a href="/request/printer" class="block">
+                    <div class="feature feature-7 boxed text-center imagebg" data-overlay="3">
+                        <div class="background-image-holder">
+                            <img alt="background" src="~/images/printer.jpg">
+                        </div>
+                        <h4 class="pos-vertical-center">Printer</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>
+
+
+<footer class="container">
+    <p>&copy; @DateTime.Now.Year - Assert Management</p>
+</footer>
+

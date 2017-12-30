@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9930717603e04150bc7cab74a95ad8f4" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="AssetManagementModel.Asset" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementModel.AssetType" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementModel.Invoice" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementModel.InvoiceAssetMapper" Width="1.5" PointX="8.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementModel.Location" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementModel.RequestStatu" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementModel.UserRequestAssetMapper" Width="2.625" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementModel.UserRequest" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementModel.UserRole" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementModel.User" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="AssetManagementModel.FK__Assets__AssetTyp__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementModel.FK__InvoiceAs__Asset__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementModel.FK__UserReque__Asset__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementModel.FK__UserReque__Asset__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementModel.FK__InvoiceAs__Invoi__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementModel.FK__Users__LocationI__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementModel.FK__UserReque__Statu__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementModel.FK__UserReque__Reque__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementModel.FK__UserReque__Locat__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementModel.FK__UserReque__UserI__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementModel.FK__Users__RoleId__1B0907CE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AssetManagementModel.PurchaseRequest" Width="1.5" PointX="10.625" PointY="9" />
+        <EntityTypeShape EntityType="AssetManagementModel.VendorList" Width="1.5" PointX="8.375" PointY="9.25" />
+        <AssociationConnector Association="AssetManagementModel.FK__PurchaseR__Vendo__300424B4" />
+        <AssociationConnector Association="AssetManagementModel.FK__UserReque__Locat__398D8EEE" />
+        <AssociationConnector Association="AssetManagementModel.FK__UserReque__UserI__3A81B327" />
+        <EntityTypeShape EntityType="AssetManagementModel.Attribute" Width="1.5" PointX="3" PointY="13" />
+        <EntityTypeShape EntityType="AssetManagementModel.AttributeDetail" Width="1.5" PointX="5.25" PointY="13.25" />
+        <AssociationConnector Association="AssetManagementModel.FK__Attribute__Asset__35BCFE0A" />
+        <AssociationConnector Association="AssetManagementModel.FK__Attribute__Attri__38996AB5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

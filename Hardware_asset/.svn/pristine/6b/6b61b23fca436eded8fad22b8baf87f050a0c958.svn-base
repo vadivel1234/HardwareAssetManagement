@@ -1,0 +1,50 @@
+﻿@model Asset_Management.Models.AssetManagement
+@{
+    ViewBag.Title = "PurchaseRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section StyleSection
+{  
+@Styles.Render("~/Content/css")
+<link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+}
+<h2>PurchaseRequest</h2>
+
+
+@using (Html.BeginForm("PurchaseRequest", "AssetManagement", FormMethod.Post, new { novalidate = "novalidate" }))
+{
+        <div class="form-field">
+        <div class="form-textbox" tabindex="1">
+            <label class="form-control-placeholder" for="AssetName">Asset Name</label>
+            @Html.TextBoxFor(model => model.AssetName, new { @class = "form-control content-medium", autocomplete = "off", maxlength = 200, required = "required" })          
+        </div>
+        @Html.ValidationMessageFor(model => model.AssetName, "", new { @class = "content-small" })
+    </div>
+    <div class="form-field">
+        <div class="form-textbox" tabindex="1">
+            <label class="form-control-placeholder" for="ModelName">Model Name</label>
+            @Html.TextBoxFor(model => model.ModelName, new { @class = "form-control content-medium", autocomplete = "off", maxlength = 200, required = "required" })            
+        </div>
+        @Html.ValidationMessageFor(model => model.ModelName, "", new { @class = "content-small" })
+    </div>
+    <div class="form-field">
+        <div class="form-textbox" tabindex="1">
+            <label class="form-control-placeholder" for="Comments">Comments (If Any)</label>
+            @Html.TextBoxFor(model => model.Comments, new { @class = "form-control content-medium", autocomplete = "off", maxlength = 200, required = "required" })
+        </div>       
+    </div>
+    <div class="form-field">
+        <label class="form-control-placeholder col-lg-12" for="Comments">Vendor Name</label>
+        @Html.DropDownList("vendorname", Asset_Management.Models.AssetManagement.GetVendorList(), new { @class = "selectpicker" })
+
+        <div class="form-field logon-field">
+            <input type="submit" value="SUBMIT REQUEST" class="btn default-btn submit" />
+        </div>
+        </div>
+        }
+
+
+        @section Scripts {
+            <script src="~/Scripts/AssetManagement/PurchaseRequest.js"></script>
+            <script src="~/Scripts/bootstrap-select-latest.js"></script>
+        }

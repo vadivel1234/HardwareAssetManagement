@@ -1,0 +1,54 @@
+﻿@model Asset_Management.Models.DeviceRequest
+@{
+    ViewBag.Title = "Request Device | Asset Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var devicetype = ViewBag.devicetype as string;
+    var locationlist = Asset_Management.Models.AssertTypeDetails.LocationList();
+    var asserttype = ViewBag.devicetype as MultiSelectList;    
+}
+<section class="text-center imagebg" data-overlay="4">
+    <div class="background-image-holder">
+        <img alt="whatsnew-banner" src="//cdn.syncfusion.com/content/images/products/whats-new/optimizedimages/whatsnew-08.jpg?v=14112017083830">
+    </div>
+    <div style="top: 3em;position: absolute;left: 5em;">
+        <div class="bar__module">
+            <a href="/">
+                Back to Home
+            </a>
+        </div>
+        <!--end module-->
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <h2>
+                Request A Device
+            </h2>
+            <p class="lead"> Fill out the form to process your request</p>
+            <div class="col-md-offset-3 col-md-6">
+                @using (Html.BeginForm("RequestDevice", "AssetManagement", FormMethod.Post, new { novalidate = "novalidate" }))
+            {
+                    <div class="form-field" style="padding-bottom: 2em">
+                        <label class="form-control-placeholder col-lg-12" for="Comments">Location</label>
+                        @Html.DropDownList("LocationId", Asset_Management.Models.AssertTypeDetails.LocationList(), new { @class = "", id = "LocationDrop" })
+                    </div>
+                    <div class="form-field" style="padding-bottom: 2em">
+                        <label class="form-control-placeholder col-lg-12" for="Comments">Asset Type</label>
+                        @Html.DropDownList("AssetTypeId", asserttype, new { @class = "", id = "AssetTypeDrop" })
+                    </div>
+                    <div class="form-field" style="padding-bottom: 2em">
+                        <label class="form-control-placeholder col-lg-12" for="Description">Description</label>
+                        <textarea rows="6" placeholder="Please enter your device specifications here." name="Description" class="validate-required" style="height: 8em;"></textarea>
+                    </div>
+                    <div class="form-field" style="padding-top: 3em;">
+                        <div class="form-field logon-field">
+                            <input type="submit" value="Submit for manager approval" class="btn default-btn submit" style="color: #fff" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <footer class="container">
+        <p>&copy; @DateTime.Now.Year - Assert Management</p>
+    </footer>
+</section>

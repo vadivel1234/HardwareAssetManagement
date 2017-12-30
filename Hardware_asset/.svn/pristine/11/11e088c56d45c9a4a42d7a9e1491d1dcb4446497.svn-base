@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Asset Management";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .total-count{
+        font-size: 50px;
+    }
+</style>
+
+<section class="text-center height-40 imagebg" data-overlay="4">
+    <div class="background-image-holder" style="background-color: rgba(0, 0, 0, 0); background-position: initial; background-repeat: repeat; background-attachment: scroll; background-image: url(&quot;//cdn.syncfusion.com/content/images/products/whats-new/optimizedimages/whatsnew-08.jpg?v=14112017083830&quot;); background-size: auto auto; background-origin: padding-box; background-clip: border-box; opacity: 1;">
+        <img alt="whatsnew-banner" src="//cdn.syncfusion.com/content/images/products/whats-new/optimizedimages/whatsnew-08.jpg?v=14112017083830">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="typed-headline">
+                    <h1> Asset Management </h1>
+                    <h3 class="lead">Manage your asserts here</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <a href="/mydevices" class="block">
+                    <div class="feature boxed boxed--border border--round text-center">
+                        <span class="total-count">@ViewBag.AssetCount</span>                       
+                        <span class="h5 color--primary">My Devices</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="/request" class="block">
+                    <div class="feature boxed boxed--border border--round text-center">
+                        <i class="icon--lg icon-Cloud"></i>
+                        <span class="h5 color--primary">Request Device</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="#" class="block">
+                    <div class="feature boxed boxed--border border--round text-center">
+                        <i class="icon--lg icon-Checked-User"></i>
+                        <span class="h5 color--primary">Permissions</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="#" class="block">
+                    <div class="feature boxed boxed--border border--round text-center">
+                        <i class="icon--lg icon-Handshake"></i>
+                        <span class="h5 color--primary">Integrations</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="#" class="block">
+                    <div class="feature boxed boxed--border border--round text-center">
+                        <i class="icon--lg icon-Data-Storage"></i>
+                        <span class="h5 color--primary">Managing Storage</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="#" class="block">
+                    <div class="feature boxed boxed--border border--round text-center">
+                        <i class="icon--lg icon-Email"></i>
+                        <span class="h5 color--primary">Mailing and Subscriptions</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="#" class="block">
+                    <div class="feature boxed boxed--border border--round text-center">
+                        <i class="icon--lg icon-Brush"></i>
+                        <span class="h5 color--primary">Appearance</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="#" class="block">
+                    <div class="feature boxed boxed--border border--round text-center">
+                        <i class="icon--lg icon-Cursor-Click2"></i>
+                        <span class="h5 color--primary">Analytics</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>
+<footer class="container">
+    <p>&copy; @DateTime.Now.Year - Assert Management</p>
+</footer>

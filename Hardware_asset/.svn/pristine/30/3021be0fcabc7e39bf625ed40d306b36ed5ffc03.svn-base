@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Asset_Management.DataModel;
+
+namespace Asset_Management.Models
+{
+    public class MemberService
+    {
+        public User GetUser(string email)
+        {
+            var user = new User();
+            using (var entity = new AssetManagementEntities())
+            {
+                user = entity.Users.Where(employee => employee.Email == email).FirstOrDefault();
+            }
+            return user;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Asset_Management.Models;
+
+namespace Asset_Management.Controllers
+{
+    public class AssetManagementController : Controller
+    {
+        // GET: AssetManagement
+        [HttpGet]
+        [Authorize]
+        public ActionResult PurchaseRequest()
+        {
+            AssetManagement assetManagement = new AssetManagement();
+            return View(assetManagement);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult PurchaseRequest(AssetManagement assetManagement)
+        {
+            assetManagement.LogPurchaseRequest(assetManagement);
+            return View(assetManagement);
+        }
+    }
+}

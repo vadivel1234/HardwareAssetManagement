@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Asset_Management.DataModel;
+using System.Net;
+using System.Configuration;
+using Newtonsoft.Json.Linq;
+
+namespace Asset_Management.Models
+{
+    public class MemberService
+    {
+        public User GetUser(string email)
+        {
+            var user = new User();
+            using (var entity = new AssetManagementEntities())
+            {
+                user = entity.Users.Where(employee => employee.Email == email).FirstOrDefault();
+            }
+            return user;
+        }
+
+        public static void UpdateLoggedUserProfileImageFromHRPortal()
+        {
+            if (HttpContext.Current.Request.IsAuthenticated && HttpContext.Current.Session["UserProfileImage"] == null)
+            {
+                var Imageurl = ConfigurationManager.AppSettings["HRPortalAPI"] + "getprofileimage?apikey=" +
+                          ConfigurationManager.AppSettings["HRPortalAPIKey"] + "&emailid=" + HttpContext.Current.User.Identity.Name + "&size=64";
+                string profileImage = string.Empty;
+                using (WebClient client = new WebClient())
+                {
+                    profileImage = client.DownloadString(Imageurl);
+                }
+
+                HttpContext.Current.Session["UserProfileImage"] = string.IsNullOrEmpty(profileImage) ? null : JObject.Parse(profileImage).SelectToken("ProfileImageUrl").Value<string>();
+            }
+        }
+    }
+}

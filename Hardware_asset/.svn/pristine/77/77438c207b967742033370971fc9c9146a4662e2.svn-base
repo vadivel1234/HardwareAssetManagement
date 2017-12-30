@@ -1,0 +1,52 @@
+﻿
+<title>Employee Asset Info</title>
+
+<link rel="stylesheet" href="//cdn.syncfusion.com/15.4.0.17/js/web/flat-azure/ej.web.all.min.css" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
+<script src="//cdn.syncfusion.com/15.4.0.17/js/web/ej.web.all.min.js"> </script>
+
+<style>
+    #employee-asset {
+        padding: 70px 0;
+        background-color: aliceblue;
+    }
+    h3 {
+        padding-bottom: 25px;
+    }
+</style>
+
+<div id="employee-asset">
+    <div class="container">
+        <div class="row">
+            <h3>Employee Asset List</h3>
+            <div id="Grid"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        $(function () {
+            var dataSource = ej.DataManager({
+                url: "/account/EmployeeAssets", adaptor: new ej.UrlAdaptor()
+            });
+            $("#Grid").ejGrid({
+                // the datasource "window.gridData" is referred from jsondata.min.js
+                dataSource: dataSource,
+                allowPaging: true,
+                isResponsive: true,
+                columns: [
+                            { field: "ModelName", headerText: "Asset Name", textAlign: ej.TextAlign.Center },
+            { field: "TeamName", headerText: "Team Name", textAlign: ej.TextAlign.Center },
+            { field: "ReportingPerson", headerText: "Reporting Person", textAlign: ej.TextAlign.Center },
+            { field: "Location", headerText: "Location", textAlign: ej.TextAlign.Center },
+            { field: "PurchaseDate", headerText: "Purchase Date", textAlign: ej.TextAlign.Center, format: "{0:MMM d, yyyy }" },
+            { field: "DueDate", headerText: "Due Date", textAlign: ej.TextAlign.Center, format: "{0:MMM d, yyyy }" }
+                ]
+            });
+        });
+</script>
+

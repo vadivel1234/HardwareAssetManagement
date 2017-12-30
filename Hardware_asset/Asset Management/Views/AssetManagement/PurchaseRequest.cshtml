@@ -1,0 +1,63 @@
+﻿@model Asset_Management.Models.AssetManagement
+@{
+    ViewBag.Title = "Purchase Request | Asset Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";    
+}
+<section class="text-center imagebg" data-overlay="4">
+    <div class="background-image-holder">
+        <img alt="whatsnew-banner" src="~/images/Banner.jpg">
+    </div>
+    <div style="top: 3em;position: absolute;left: 5em;">
+        <div class="bar__module">
+            <a href="/">
+                Back to Home
+            </a>
+        </div>
+        <!--end module-->
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <h2>
+                Purchase Request
+            </h2>
+            <p class="lead"> Fill out the details to process the request</p>
+            <div class="col-md-offset-3 col-md-6">
+                @using (Html.BeginForm("PurchaseRequest", "AssetManagement", FormMethod.Post, new { novalidate = "novalidate" }))
+                {
+                    <div class="form-field" style="padding-bottom: 2em">
+                        <div class="form-textbox" tabindex="1">
+                            <label class="form-control-placeholder" for="AssetName">Asset Name</label>
+                            @Html.TextBoxFor(model => model.AssetName, new { @class = "form-control content-medium", autocomplete = "off", maxlength = 200, required = "required" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.AssetName, "", new { @class = "content-small" })
+                    </div>
+                    <div class="form-field" style="padding-bottom: 2em">
+                        <div class="form-textbox" tabindex="1">
+                            <label class="form-control-placeholder" for="ModelName">Model Name</label>
+                            @Html.TextBoxFor(model => model.ModelName, new { @class = "form-control content-medium", autocomplete = "off", maxlength = 200, required = "required" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ModelName, "", new { @class = "content-small" })
+                    </div>
+                    <div class="form-field" style="padding-bottom: 2em">
+                        <div class="form-textbox" tabindex="1">
+                            <label class="form-control-placeholder" for="Comments">Comments (If Any)</label>
+                            @Html.TextBoxFor(model => model.Comments, new { @class = "form-control content-medium", autocomplete = "off", maxlength = 200, required = "required" })
+                        </div>
+                    </div>
+                    <div class="form-field" style="padding-bottom: 2em">
+                        <label class="form-control-placeholder col-lg-12" for="Comments">Vendor Name</label>
+                        @Html.DropDownList("vendorname", Asset_Management.Models.AssetManagement.GetVendorList(), new { @class = "selectpicker" })
+
+                        <div class="form-field logon-field" style="padding-top: 3em;">
+                            <input type="submit" value="SUBMIT REQUEST" class="btn default-btn submit" style="color: #fff" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <footer class="container">
+        <p>&copy; @DateTime.Now.Year - Assert Management</p>
+    </footer>
+</section>

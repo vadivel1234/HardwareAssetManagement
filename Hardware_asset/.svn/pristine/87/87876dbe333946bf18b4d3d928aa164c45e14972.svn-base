@@ -1,0 +1,115 @@
+﻿
+<title>Employee Request List</title>
+
+<link rel="stylesheet" href="//cdn.syncfusion.com/15.4.0.17/js/web/flat-azure/ej.web.all.min.css" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="//cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
+<script src="//cdn.syncfusion.com/15.4.0.17/js/web/ej.web.all.min.js"> </script>
+<link href="~/css/theme.css" rel="stylesheet" />
+<link href="~/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+    #employee-asset {
+        padding: 70px 0;
+        background-color: aliceblue;
+    }
+     a {
+        color: #4a90e2 !important;
+    }
+     table{
+         margin-bottom: 0px;
+     }
+    h3 {
+        padding-bottom: 25px;
+    }
+</style>
+
+@*<div id="employee-asset">
+    <div class="container">
+        <div class="row">
+            <h3>Employee Request List</h3>
+            
+        </div>
+    </div>
+</div>*@
+<section id="employee-asset" class="text-center imagebg" data-overlay="4">
+    <div class="background-image-holder" style='background-color: rgba(0, 0, 0, 0); background-position: initial; background-repeat: repeat; background-attachment: scroll; background-image: url("/images/grid.jpg"); background-size: auto auto; background-origin: padding-box; background-clip: border-box; opacity: 1;'>
+        <img alt="whatsnew-banner" src="~/images/grid.jpg">
+    </div>
+    <div style="top: 3em;position: absolute;left: 5em;">
+        <div class="bar__module">
+            <a href="/">
+                Back to Home
+            </a>
+        </div>
+        <!--end module-->
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <h2>
+               Manage Asset Requests 
+            </h2>
+            <div class="col-md-12">
+                <div id="Grid"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="container">
+        <p>&copy; @DateTime.Now.Year - Asset Management</p>
+    </footer>
+</section>
+<script type="text/x-jsrender" id="Template">
+    <div class="action" id="approve">
+        <a href="javascript:void(0)" id="{{:ReqId}}">APPROVE</a>
+    </div>
+</script>
+
+<script type="text/javascript">
+        $(function () {
+            var dataSource = ej.DataManager({
+                url: "/account/RequestAssets", adaptor: new ej.UrlAdaptor()
+            });
+            $("#Grid").ejGrid({
+                dataSource: dataSource,
+                isResponsive: true,
+                columns: [
+            { field: "ReqId", headerText: "Req Id", width: 0, visible: false },
+            { field: "Eid", headerText: "Employee Id", textAlign: ej.TextAlign.Center },
+            { field: "Email", headerText: "Email", textAlign: ej.TextAlign.Center },
+            { field: "ModelName", headerText: "Asset Name", textAlign: ej.TextAlign.Center },
+            { field: "TeamName", headerText: "Team Name", textAlign: ej.TextAlign.Center },
+            { field: "ReportingPerson", headerText: "Reporting Person", textAlign: ej.TextAlign.Center },
+            { field: "Location", headerText: "Location", textAlign: ej.TextAlign.Center },
+            { headerText: "Action", template: true, templateID: "#Template" }
+                ]
+            });
+        });
+
+        $(document).on("click", "#approve", function () {            
+            var reqId = $(this).children("a").attr("id");
+            $.ajax({
+                type: 'POST',
+                url: "/account/approveRequest",
+                data: { "reqId": reqId },
+                dataType: "json",
+                success: function (result) {
+                    if (result == true) {
+                        gridObj = $("#Grid").data("ejGrid");
+                        if (gridObj != null) {
+                            gridObj.refreshContent(false);
+                        }
+                        reqId = "";
+                    }
+                }
+            });
+        })
+</script>
+
+
+
+
+

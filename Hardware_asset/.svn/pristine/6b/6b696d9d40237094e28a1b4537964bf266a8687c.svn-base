@@ -1,0 +1,181 @@
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Syncfusion.JavaScript;
+using Asset_Management.DataModel;
+
+namespace Asset_Management.Models
+{
+    public class ExternalLoginConfirmationViewModel
+    {
+        [Required]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+    }
+
+    public class ExternalLoginListViewModel
+    {
+        public string ReturnUrl { get; set; }
+    }
+
+    public class SendCodeViewModel
+    {
+        public string SelectedProvider { get; set; }
+        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+        public string ReturnUrl { get; set; }
+        public bool RememberMe { get; set; }
+    }
+
+    public class VerifyCodeViewModel
+    {
+        [Required]
+        public string Provider { get; set; }
+
+        [Required]
+        [Display(Name = "Code")]
+        public string Code { get; set; }
+        public string ReturnUrl { get; set; }
+
+        [Display(Name = "Remember this browser?")]
+        public bool RememberBrowser { get; set; }
+
+        public bool RememberMe { get; set; }
+    }
+
+    public class ForgotViewModel
+    {
+        [Required]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+    }
+
+    public class LoginViewModel
+    {
+        [Required]
+        [Display(Name = "Email")]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [Display(Name = "Remember me?")]
+        public bool RememberMe { get; set; }
+    }
+
+    public class RegisterViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+    }
+
+    public class ResetPasswordViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        public string Code { get; set; }
+    }
+
+    public class ForgotPasswordViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+    }
+
+    public class EmployeeModel
+    {
+        public int Eid { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public DateTime DateOfJoining { get; set; }
+        public string TeamName { get; set; }
+        public string ReportingPerson { get; set; }
+        public string Location { get; set; }
+        public int RollId { get; set; }
+        public int? AssetCount { get; set; }
+
+        public List<EmployeeModel> GetEmployeeList(DataManager dataManager)
+        {
+            var employeeDetails = new List<EmployeeModel>();
+            using (var entity = new AssetManagementEntities())
+            {
+                employeeDetails = (from employee in entity.Users
+                                   join role in entity.UserRoles on employee.RoleId equals role.RoleId
+                                   join location in entity.Locations on employee.LocationId equals location.LocationId
+                                   where employee.IsActive
+                                   select new EmployeeModel
+                                   {
+                                       Eid = employee.UserId,
+                                       Name = employee.Name,
+                                       Email = employee.Email,
+                                       DateOfJoining = employee.CreatedDate,
+                                       TeamName = employee.TeamName,
+                                       Location = location.LocationName,
+                                       AssetCount = employee.AssetCount
+                                   }).ToList();
+            }
+            return employeeDetails;            
+        }
+    }
+
+    public class AssetModel
+    {
+        public int AsserId { get; set; }
+        public string ModelName { get; set; }
+        public DateTime DateOfPurChase { get; set; }
+        public DateTime WarrantyExpiryDate { get; set; }
+        public string AssetTypeName { get; set; }
+
+        public List<AssetModel> GetAssetList(DataManager dataManager)
+        {
+            var assetDetails = new List<AssetModel>();
+            using (var entity = new AssetManagementEntities())
+            {
+                assetDetails = (from asset in entity.Assets
+                                join assetType in entity.AssetTypes on asset.AssetTypeId equals assetType.TypeId
+                                where asset.IsActive
+                                select new AssetModel
+                                {
+                                    AsserId = asset.Id,
+                                    ModelName = asset.ModelName,
+                                    AssetTypeName = assetType.AssetTypeName,
+                                    DateOfPurChase = asset.DateOfPurchase,
+                                    WarrantyExpiryDate = asset.WarrantyExpiryDate
+                                }).ToList();
+            }
+            return assetDetails;
+        }
+    }
+}

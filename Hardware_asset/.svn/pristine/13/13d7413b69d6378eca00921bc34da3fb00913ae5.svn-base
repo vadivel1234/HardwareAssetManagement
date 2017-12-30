@@ -1,0 +1,55 @@
+﻿@model Asset_Management.Models.DeviceRequest
+@{
+    ViewBag.Title = "RequestDevice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="text-center height-100 imagebg" data-overlay="4">
+    <div class="background-image-holder">
+        <img alt="whatsnew-banner" src="//cdn.syncfusion.com/content/images/products/whats-new/optimizedimages/whatsnew-08.jpg?v=14112017083830">
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <h2>
+                Request A Device
+            </h2>
+            <p class="lead"> Fill out the form to process your request</p>
+            <div class="col-md-offset-3 col-md-6">
+                @using (Html.BeginForm("RequestDevice", "AssetManagement", FormMethod.Post, new { novalidate = "novalidate" }))
+            {
+                    <div class="form-field">
+                        <label class="form-control-placeholder col-lg-12" for="Comments">Location</label>
+                        @Html.DropDownList("LocationId", Asset_Management.Models.AssertTypeDetails.LocationList(), new { @class = "", id = "LocationDrop" })
+                    </div>
+                    <div class="form-field">
+                        <label class="form-control-placeholder col-lg-12" for="Comments">Asset Type</label>
+                        @Html.DropDownList("AssetTypeId", Asset_Management.Models.AssertTypeDetails.AssetTypeList(), new { @class = "", id = "AssetTypeDrop" })
+                    </div>
+                    <div class="form-group col-md-12">
+
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.IsNewDeviceRequest)
+                        </div>
+                        @Html.LabelFor(model => model.IsNewDeviceRequest, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                    <div class="form-field">
+                        <div class="form-field logon-field">
+                            <input type="submit" value="SUBMIT REQUEST" class="btn default-btn submit" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <footer class="container">
+        <p>&copy; @DateTime.Now.Year - Assert Management</p>
+    </footer>
+</section>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('#AssetTypeDrop').multiselect();
+            //$('#LocationDrop').multiselect();
+        });
+    </script>
+}
